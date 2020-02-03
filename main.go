@@ -16,14 +16,14 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// Routes
-	e.GET("/", hello)
+	e.GET("/", Hello)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":5000"))
 }
 
-// Handler
-func hello(c echo.Context) error {
+// Hello ...
+func Hello(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"status": "OK",
 	})
