@@ -33,4 +33,4 @@ workflows:
       - ci_tests
       - ci_build:
           requires:
-            - ci_build
+            - ci_tests
