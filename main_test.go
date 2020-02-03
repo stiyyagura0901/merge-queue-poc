@@ -1,6 +1,7 @@
 package main_test
 
 import (
+	"time"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -14,6 +15,8 @@ func TestMain(t *testing.T) {
 	e := echo.New()
 	req := httptest.NewRequest(http.MethodPost, "/", nil)
 	rec := httptest.NewRecorder()
+
+	time.Sleep(time.Duration(100) * time.Second)
 
 	c := e.NewContext(req, rec)
 

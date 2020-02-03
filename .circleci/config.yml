@@ -1,13 +1,36 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
-version: 2.1
-# Use a package of configuration called an orb.
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-# Orchestrate or schedule a set of jobs
+version: 2.0
+
+circleci_golang: &circleci_golang
+  docker:
+    - image: circleci/golang:1.13.3-stretch
+  working_directory: /go/src/github.com/stiyyagura0901/merge-queue-poc
+
+jobs:
+  ci_build:
+    <<: *circleci_golang
+    environment:
+      GO111MODULE: "on"
+    steps:
+      - checkout
+      - run: go mod download
+      - run: |
+          cd /go/src/github.com/stiyyagura0901/merge-queue-poc; go build main.go
+  ci_tests:
+    <<: *circleci_golang
+    environment:
+      GO111MODULE: "on"
+    steps:
+      - checkout
+      - run: go mod download
+      - run: |
+          cd /go/src/github.com/stiyyagura0901/merge-queue-poc; go test -v ./...
+
+
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
+  version: 2
+  build:
     jobs:
-      - welcome/run
+      - ci_tests
+      - ci_build:
+          requires:
+            - ci_build
