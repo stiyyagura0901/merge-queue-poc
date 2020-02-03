@@ -25,6 +25,6 @@ func main() {
 // Hello ...
 func Hello(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"status": "OK",
+		"status": "OK1",
 	})
 }
