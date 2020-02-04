@@ -17,6 +17,7 @@ func main() {
 
 	// Routes
 	e.GET("/", Hello)
+	e.GET("/test", Hello1)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":5000"))
@@ -24,6 +25,13 @@ func main() {
 
 // Hello ...
 func Hello(c echo.Context) error {
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"status": "OK",
+	})
+}
+
+// Hello1 ...
+func Hello1(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"status": "OK1",
 	})
