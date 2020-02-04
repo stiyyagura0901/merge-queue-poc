@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	// Echo instance
+	// Echo instance is just a comment
 	e := echo.New()
 
 	// Middleware
