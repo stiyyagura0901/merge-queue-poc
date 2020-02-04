@@ -16,6 +16,7 @@ func TestMain(t *testing.T) {
 	req := httptest.NewRequest(http.MethodPost, "/", nil)
 	rec := httptest.NewRecorder()
 
+	t.FailNow()
 	time.Sleep(time.Duration(20) * time.Second)
 	c := e.NewContext(req, rec)
 
