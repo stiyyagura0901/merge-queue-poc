@@ -15,6 +15,7 @@ func TestMain(t *testing.T) {
 	req := httptest.NewRequest(http.MethodPost, "/", nil)
 	rec := httptest.NewRecorder()
 
+	// some code change for conficts
 	c := e.NewContext(req, rec)
 
 	if assert.NoError(t, main.Hello(c)) {
